@@ -1,11 +1,23 @@
-package com.addapta.calendar.persistence.UserBO;
+package com.addapta.calendar.persistence.BO;
+
+import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 
+import com.addapta.calendar.persistence.entity.Pagina;
+import com.addapta.calendar.persistence.entity.Rol;
 import com.addapta.calendar.persistence.entity.User;
 import com.addapta.calendar.persistence.hibernateUtil.HibernateUtil;
 
@@ -109,4 +121,28 @@ public User recuperarUserValidado(User u) {
 							
 		return u; 
 	}
+
+
+public boolean recoveryWeb(User u, String url) {
+
+	
+	boolean bOk = true;
+	Session session = HibernateUtil.getSessionFactory().openSession();
+	 @SuppressWarnings("unchecked")
+	List<Object[]> results = session.createNativeQuery(
+		    "SELECT pagina.NombrePagina, user_rol.User_id FROM user_rol \r\n" + 
+		    "INNER JOIN rol_pagina ON rol_pagina.Rol_id = user_rol.roles_id \r\n" + 
+		    "INNER JOIN pagina ON pagina.id = rol_pagina.listaWeb_id\r\n" + 
+		    "WHERE user_rol.User_id = 1 AND pagina.NombrePagina ="+"'"+url+"'" )
+		.list();
+	 
+	if(results == null || results.isEmpty()) {
+		bOk = false;
+	}else {}
+	 
+	 
+
+						
+	return bOk; 
+}		
 }

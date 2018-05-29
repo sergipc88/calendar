@@ -1,9 +1,7 @@
 package com.addapta.calendar.business.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,23 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.addapta.calendar.getway.dto.DtoNombrerepetido;
-import com.addapta.calendar.persistence.BO.UserBO;
-import com.addapta.calendar.persistence.entity.User;
-import com.addapta.calendar.utilities.JsonUtilities;
-import com.google.gson.Gson;
-
+import com.addapta.calendar.persistence.BO.CalendarioBO;
+import com.addapta.calendar.persistence.entity.Calendario;
 /**
- * Servlet implementation class nombrerepetido
+ * Servlet implementation class RecuperarCalendario
  */
-@WebServlet("/nombreRepetido")
-public class NombreRepetido extends HttpServlet {
+@WebServlet("/recuperarCalendario")
+public class RecuperarCalendario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NombreRepetido() {
+    public RecuperarCalendario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,30 +30,15 @@ public class NombreRepetido extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String pagina = "calendar.jsp";
+		CalendarioBO ca = new CalendarioBO();
+		List<Calendario>calendars = ca.selectCalendars();
 		
-		User u = new User();
-		UserBO uBO = new UserBO();
-		DtoNombrerepetido dto = new DtoNombrerepetido();		
-		String nombre = request.getParameter("user");
-					
-		if(nombre != null && nombre.trim().length() != 0) {
-			dto.setSuccess(true);
-			u.setUsuario(nombre);
-			dto.setRepeated(uBO.recoveryUser(u));
-		} else {
-			dto.setSuccess(true);
-			dto.setRepeated(false);
-		}
+		request.setAttribute("calendar", calendars);
 		
-	
+		request.getRequestDispatcher(pagina).forward(request, response);
 		
-		String json = JsonUtilities.jsonConverter(dto);
-		  
-		response.getWriter().print(json);
-		
-
 	}
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

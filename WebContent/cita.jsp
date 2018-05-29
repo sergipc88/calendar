@@ -23,7 +23,7 @@
 <html lang="es">
 <head>
 	<title>
-	Main
+	Cita
 </title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,7 +70,7 @@
 					class="img-avatar" alt="sergio.garcia">
 			</a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="calendar.jsp"> <i class="fa fa-lock"></i>Calendar
+					<a class="dropdown-item" href="main.jsp"> <i class="fa fa-lock"></i>Main
 					</a> <a class="dropdown-item" href="index.jsp"><i class="fa fa-lock"></i>Cerrar Sesión</a>
 				</div></li>
 			<button class="navbar-toggler aside-menu-toggler" type="button">
@@ -94,12 +94,27 @@
 								</div>
 								<div class="card-body">
 									
-									<h3>
-										<%-- Bienvenido  <%= user.getUsuario() %> --%>
-									
-										
-								
-									</h3>
+									<form  action="calendar">
+										<div class="form-group">
+											<label for="user">Fecha de alta*</label>
+											<input class="form-control  "  type="text" name="fechainit" maxlength="255">
+											<p id="displayName"></p>
+										</div>
+										<div class="form-group">
+											<label for="mail">fecha de baja*</label>
+											<input class="form-control "  type="text" name="fechaFin" maxlength="255">
+										</div>
+										<div class="form-group">
+											<label for="mail">descripcion*</label>
+											<textarea class="form-control "  type="text" name="descripcion" maxlength="255"></textarea>
+										</div>
+										<div class="form-group">
+											<input class="btn btn-lg btn-success btn-block "  type="submit" value="dar de alta"  >
+										</div>
+										<div class="form-group">
+											<p> <c:out value="${error}"></c:out></p>
+										</div>
+									</form>
 									
 									
 								</div>
@@ -137,41 +152,3 @@
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-
-<!-- <div class="app-body">
-		<main class="main">
-			<div class="container-fluid">
-				<div class="animated fadeIn ">
-					<div class="row">
-						<div class="col-md-12">
-							<br>
-							<div class="card card-accent-primary">
-								<div class="card-header">
-								
-								</div>
-								<div class="card-body">
-
-								<h3>
-									Bienvenido
-									
-										<c:out value="${requestScope.usuario.usuario}"></c:out>
-								
-								</h3>
-
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-	</div>
-	-->

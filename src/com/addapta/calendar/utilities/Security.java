@@ -1,11 +1,11 @@
-package com.addapta.utilities.security;
+package com.addapta.calendar.utilities;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-import com.addapta.calendar.persistence.UserBO.UserBO;
+import com.addapta.calendar.persistence.BO.UserBO;
 import com.addapta.calendar.persistence.entity.User;
 
 public class Security {

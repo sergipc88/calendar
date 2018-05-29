@@ -1,4 +1,4 @@
-package com.addapta.calendar.utilities.json;
+package com.addapta.calendar.utilities;
 
 
 import com.google.gson.Gson;

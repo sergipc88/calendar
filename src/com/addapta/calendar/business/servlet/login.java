@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 
-import com.addapta.calendar.persistence.UserBO.UserBO;
+import com.addapta.calendar.persistence.BO.UserBO;
 import com.addapta.calendar.persistence.entity.User;
-import com.addapta.utilities.security.Security;
+import com.addapta.calendar.utilities.Security;
 
 /**
  * Servlet implementation class login
@@ -53,7 +53,7 @@ public class login extends HttpServlet {
 			u.setPass(Security.encrypt(passd.trim()));//itroduzco la contraseña de usuario en el Objeto usuario a la vez que se encripta
 			u = uBO.recuperarUserValidado(u);
 			
-			
+		
 			
 			request.setAttribute("usuario", u);
 			 session.setAttribute("user", u);

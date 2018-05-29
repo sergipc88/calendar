@@ -1,9 +1,15 @@
 package com.addapta.calendar.persistence.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 
@@ -15,6 +21,8 @@ public class User {
 	private String usuario;
 	private String pass;
 	private String mail;
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER) //eager = carga ansiosa
+	private List<Rol>roles = new ArrayList<>();
 	
 	public User() {
 		super();
@@ -28,6 +36,7 @@ public class User {
 		this.pass = pass;
 		this.mail = mail;
 	}
+	
 
 	public int getId() {
 		return id;
@@ -60,6 +69,15 @@ public class User {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+	
 	
 	
 	

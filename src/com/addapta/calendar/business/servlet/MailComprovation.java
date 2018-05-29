@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.addapta.calendar.getway.dto.DtoMailVerification;
-import com.addapta.calendar.persistence.UserBO.UserBO;
+import com.addapta.calendar.persistence.BO.UserBO;
 import com.addapta.calendar.persistence.entity.User;
-import com.addapta.calendar.utilities.json.JsonUtilities;
-import com.addapta.utilities.security.Security;
+import com.addapta.calendar.utilities.JsonUtilities;
+import com.addapta.calendar.utilities.Security;
 
 /**
  * Servlet implementation class MailComprovation
