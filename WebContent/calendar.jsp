@@ -125,45 +125,45 @@
                 </button>
               </div>
               <div class="modal-body">
-               <form  action="citas">
+               <form  id="newCita" action="citas">
 										<div class="form-group">
 											<label for="user">Fecha de Inicio*</label>
-											<input class="form-control " placeholder=" yyyy-MM-dd"  type="text" name="fInit" maxlength="255">
+											<input class="form-control " id="fInit" placeholder="dd/MM/yyyy"  type="text" name="fInit" maxlength="255">
 											<p id="displayName"></p>
 										</div>
 										<div class="form-group">
 											<label for="user">Hora de inicio*</label>
-											<input class="form-control " placeholder="HH:mm:ss"  type="text" name="hInit" maxlength="255">
+											<input class="form-control " id="hInit" placeholder="HH:mm"  type="text" name="hInit" maxlength="255">
 											<p id="displayName"></p>
 										</div>
 										<div class="form-group">
 											<label for="mail">fecha de finalización*</label>
-											<input class="form-control " placeholder="yyyy-MM-dd"  type="text" name="fFin" maxlength="255">
+											<input class="form-control " id="fFin" placeholder="dd/MM/yyyy"  type="text" name="fFin" maxlength="255">
 										</div>
 										<div class="form-group">
 											<label for="user">Hora de finalización*</label>
-											<input class="form-control " placeholder="HH:mm:ss"  type="text" name="hFin" maxlength="255">
+											<input class="form-control " id="hFin" placeholder="HH:mm"  type="text" name="hFin" maxlength="255">
 											<p id="displayName"></p>
 										</div>
 										<div class="form-group">
 											<label for="mail">descripcion*</label>
-											<textarea class="form-control "  type="text" name="description" maxlength="255"></textarea>
+											<textarea class="form-control " id="description" type="text" name="description" maxlength="255"></textarea>
 										</div>
 										<div class="form-group">
 										
 											<label for="user">Elije calendario*</label>
-											<select class="form-control "  name="idcal" maxlength="255">
-											<c:forEach var="calendario" items="${calendar}">
-												<option value="${calendario.id}" > ${calendario.nombre} </option>
-											</c:forEach>
 											
-											
-											 </select>
+											<select class="form-control " id="idcal" name="idcal" maxlength="255">
+												<c:forEach var="calendario" items="${calendar}">
+													<option value="${calendario.id}" > ${calendario.nombre} </option>
+												</c:forEach>
+										    </select>
 											<p id="displayName"></p>
+											
 										</div>
 										<input type="hidden" name="action" value="alta">
 										<div class="form-group">
-											<input class="btn btn-lg btn-success btn-block "  type="submit" value="dar de alta"  >
+											<input class="btn btn-lg btn-success btn-block " id="alta" type="button" value="dar de alta" data-dismiss="modal">
 										</div>
 										<div class="form-group">
 											<p> <c:out value="${error}"></c:out></p>
@@ -205,10 +205,31 @@
   		// page is now ready, initialize the calendar...
 
   		$('#calendar').fullCalendar({
-  			events:'http://localhost:8080/com.calendar/recuperarcitas'
+  			events:'http://localhost:8080/com.calendar/recuperarcitas',
   						
-  				
-  			
+  				dayClick: function(date, jsEvent, view) {
+
+  					//alert(date);
+  					
+  				   // alert(date.format());
+  				    
+  				    var formateDate = date.format();
+  				    var res = formateDate.split("-");
+  				    var orderDate = res[2]+"/"+res[1]+"/"+res[0];
+  				    
+  				    //alert(orderDate);
+  				    
+  				    $('#pop').click();
+  				  	$('#fInit').val(orderDate);
+					
+  				    /* alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+
+  				    alert('Current view: ' + view.name); */
+
+  				    // change the day's background color just for fun
+  				   // $(this).css('background-color', 'red');
+
+  				  }	
   			
   			
   		})
@@ -221,6 +242,7 @@
 	<script src="js/main.js?v=1.9"></script>
 	<script src="js/moment.min.js"></script>
 	<script src="js/fullcalendar.js"></script>
+	<script src="js/calendario.js"></script>
 </body>
 </html>
 

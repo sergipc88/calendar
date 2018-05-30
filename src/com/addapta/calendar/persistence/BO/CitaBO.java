@@ -14,7 +14,9 @@ import com.addapta.calendar.persistence.hibernateUtil.HibernateUtil;
 public class CitaBO {
 
 	
-public void create(Cita c) {
+public int create(Cita c) {
+		
+		
 		
 		Session   session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
@@ -24,6 +26,8 @@ public void create(Cita c) {
 		session.close();
 		
 		
+		
+		return c.getId();
 	}
 
 public void delete(Cita c) {
@@ -34,6 +38,7 @@ public void delete(Cita c) {
 	session.remove(c);
 	transaction.commit();
 	session.close();
+	
 	
 	
 }

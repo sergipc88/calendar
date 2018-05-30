@@ -21,6 +21,32 @@ public class DateUtilities {
 		return date;
 	}
 	
+public static Date dateParser2(String f) {
+		
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = null;
+//		try {
+//			date = formatter.parse(f);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	
+	   SimpleDateFormat originalFormat = new SimpleDateFormat("dd/MM/yyyy");
+	   SimpleDateFormat targetFormat = new SimpleDateFormat("yyyy-MM-dd");
+	   Date date = null;
+	   try {
+	     date = originalFormat.parse(f);
+	     System.out.println("Old Format :   " + originalFormat.format(date));
+	     System.out.println("New Format :   " + targetFormat.format(date));
+
+	    } catch (ParseException ex) {
+	      // Handle Exception.
+	    }
+		
+		return date;
+	}
+	
 	
 	public static Date hourParser(String h) {
 		
@@ -40,6 +66,23 @@ public class DateUtilities {
 		return date;
 	}
 
+public static Date hourParser2(String h) {
+		
+		Date date = null;
+		
+		DateFormat hour = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat formateador = new SimpleDateFormat("HH:mm:ss");
+			try {
+				date = formateador.parse(h+":00");
+			
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+	
+		return date;
+	}
 
 	public static Date joinDateHour(Date day, Date hour) {
 		Date joined = null;

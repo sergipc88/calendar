@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.addapta.calendar.getway.dto.DtoNuevaCita;
 import com.addapta.calendar.persistence.BO.CitaBO;
 import com.addapta.calendar.persistence.entity.Calendario;
 import com.addapta.calendar.persistence.entity.Cita;
 import com.addapta.calendar.utilities.DateUtilities;
+import com.addapta.calendar.utilities.JsonUtilities;
 
 /**
  * Servlet implementation class calendar
@@ -47,39 +49,43 @@ public class citas extends HttpServlet {
 		String h_fin = request.getParameter("hFin");
 		String idString = request.getParameter("id");
 		int idCalendar = Integer.parseInt(request.getParameter("idcal"));
-
-		if(action.equals("alta")|| action.equals("update")) {		
-	
-			Date dateInit = DateUtilities.dateParser(fechaInitio);
-			Date dateFin = DateUtilities.dateParser(fechaFin);
-			Date hInit = DateUtilities.hourParser(h_init);
-			Date hFin = DateUtilities.hourParser(h_fin);	
-				
-			c.setDescripcion(descripcion);
-			c.setFechaInicio(dateInit);
-			c.setFechaFin(dateFin);
-			c.setHoraInit(hInit);
-			c.setHoraFin(hFin);
-			ca.setId(idCalendar);
-			c.setC(ca);
-			
-			if(action.equals("alta")) {
-				cBO.create(c);
-				
-				request.getRequestDispatcher("recuperarCalendario").forward(request, response);
-			}else {
-				int id = Integer.parseInt(idString);
-				c.setId(id);
-				cBO.update(c);
-			}
 		
+		
+		Date dateInit = DateUtilities.dateParser2(fechaInitio);
+		Date dateFin = DateUtilities.dateParser2(fechaFin);
+		Date hInit = DateUtilities.hourParser2(h_init);
+		Date hFin = DateUtilities.hourParser2(h_fin);	
 			
-		}else if(action.equals("baja")) {
-			int id = Integer.parseInt(idString);
-			c.setId(id);
-			cBO.delete(c);			
-			
+		c.setDescripcion(descripcion);
+		c.setFechaInicio(dateInit);
+		c.setFechaFin(dateFin);
+		c.setHoraInit(hInit);
+		c.setHoraFin(hFin);
+		ca.setId(idCalendar);
+		c.setC(ca);
+		
+		int idCita = cBO.create(c);
+		
+		DtoNuevaCita DtoNewCita = new DtoNuevaCita();
+		
+		if(idCita != 0 ) {
+			DtoNewCita.setId(idCita+"");
+			DtoNewCita.setOk(true);
+			DtoNewCita.setKo(false);
+		}else if(idCita == 0) {
+			DtoNewCita.setOk(false);
+			DtoNewCita.setKo(true);
 		}
+		
+		String json = JsonUtilities.jsonConverter(DtoNewCita);
+		
+		response.getWriter().print(json);
+		
+		
+		
+		
+		
+
 		
 	}
 
