@@ -3,6 +3,17 @@ $(document).ready(function(){
 	$('#calendar').fullCalendar({
 		
 		 		  locale: 'es',
+		 		  
+		 		 header: {
+				        left: 'prev,next today',
+				        center: 'title',
+				        right: 'month,agendaWeek,agendaDay,listWeek,listDay'
+				 },
+				 
+				 views: {
+				        listDay: { buttonText: 'citas diarias' },
+				        listWeek: { buttonText: 'citas semanales' }
+				 },
 		
 				  events:'http://localhost:8080/com.calendar/recuperarcitas',
 						
@@ -34,13 +45,7 @@ $(document).ready(function(){
 					  $('#newCita').attr('action', 'modificarCita');
 				  
 				  },
-				  
-				  header: {
-				        left: 'prev,next today',
-				        center: 'title',
-				        right: 'month,agendaWeek,agendaDay'
-				      },
-			
+				  			
 				  editable: true,
 				  eventDurationEditable: true,
 				  			  
