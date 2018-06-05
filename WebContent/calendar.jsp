@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+'<%@ page language="java" contentType="text/html; charset=utf-8"
+pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -22,7 +22,7 @@
 <html>
 <html lang="es">
 <head>
-<title>Calendar</title>
+<title>Calendario</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -68,7 +68,7 @@
 			<div class="dropdown-menu dropdown-menu-right">
 				<a class="dropdown-item" href="main.jsp"> <i class="fa fa-lock"></i>Main
 				</a> <a class="dropdown-item" href="index.jsp"><i class="fa fa-lock"></i>Cerrar
-					Sesión</a>
+					SesiÃ³n</a>
 			</div></li>
 		<button class="navbar-toggler aside-menu-toggler" type="button">
 			<span class="navbar-toggler-icon"></span>
@@ -76,21 +76,6 @@
 
 	</ul>
 	<!-- FIN BARRA SUPERIOR DE EVENTOS --> </header>
-
-	<!-- 	<div class="app-body">
-		<main class="main">
-			<div class="container-fluid">
-				<div class="animated fadeIn ">
-					<div class="row">
-						<div class="col-lg-12">
-							<div id="calendar">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-	</div>  -->
 
 	<div class="app-body">
 		<main class="main">
@@ -100,12 +85,12 @@
 					<div class="col-md-12">
 						<br>
 						<div class="card card-accent-primary">
-							<div class="card-header">My Calendar      </div>
+							<div class="card-header">Mi calendario</div>
 							<div class="card-body">
 								<div id="calendar">
-								 <button type="button" id="pop" class="btn btn-primary" data-toggle="modal" data-target="#primaryModal">
-                    Nueva Cita
-                  </button>
+									<button type="button" id="pop" class="btn btn-primary"
+										data-toggle="modal" data-target="#primaryModal">
+										Nueva Cita</button>
 								</div>
 							</div>
 						</div>
@@ -113,129 +98,88 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		<div class="modal fade " id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="none: block;">
-          <div class="modal-dialog modal-primary" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">Nueva Cita</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div class="modal-body">
-               <form  id="newCita" action="citas">
-										<div class="form-group">
-											<label for="user">Fecha de Inicio*</label>
-											<input class="form-control " id="fInit" placeholder="dd/MM/yyyy"  type="text" name="fInit" maxlength="255">
-											<p id="displayName"></p>
-										</div>
-										<div class="form-group">
-											<label for="user">Hora de inicio*</label>
-											<input class="form-control " id="hInit" placeholder="HH:mm"  type="text" name="hInit" maxlength="255">
-											<p id="displayName"></p>
-										</div>
-										<div class="form-group">
-											<label for="mail">fecha de finalización*</label>
-											<input class="form-control " id="fFin" placeholder="dd/MM/yyyy"  type="text" name="fFin" maxlength="255">
-										</div>
-										<div class="form-group">
-											<label for="user">Hora de finalización*</label>
-											<input class="form-control " id="hFin" placeholder="HH:mm"  type="text" name="hFin" maxlength="255">
-											<p id="displayName"></p>
-										</div>
-										<div class="form-group">
-											<label for="mail">descripcion*</label>
-											<textarea class="form-control " id="description" type="text" name="description" maxlength="255"></textarea>
-										</div>
-										<div class="form-group">
-										
-											<label for="user">Elije calendario*</label>
-											
-											<select class="form-control " id="idcal" name="idcal" maxlength="255">
-												<c:forEach var="calendario" items="${calendar}">
-													<option value="${calendario.id}" > ${calendario.nombre} </option>
-												</c:forEach>
-										    </select>
-											<p id="displayName"></p>
-											
-										</div>
-										<input type="hidden" name="action" value="alta">
-										<div class="form-group">
-											<input class="btn btn-lg btn-success btn-block " id="alta" type="button" value="dar de alta" data-dismiss="modal">
-										</div>
-										<div class="form-group">
-											<p> <c:out value="${error}"></c:out></p>
-										</div>
-									</form>
-              </div>
-              <div class="modal-footer">
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
-		
+
+
+		<div class="modal fade " id="primaryModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" style="none: block;">
+			<div class="modal-dialog modal-primary" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 id="titulo" class="modal-title">Nueva Cita</h4>
+						<button type="button" class="close" id="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">Ã—</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="newCita" action="citas">
+							<div class="form-group">
+								<label for="user">Fecha de Inicio*</label> <input
+									class="form-control " id="fInit" placeholder="dd/MM/yyyy"
+									type="text" name="fInit" maxlength="255">
+								<p id="displayName"></p>
+							</div>
+							<div class="form-group">
+								<label for="user">Hora de inicio*</label> <input
+									class="form-control " id="hInit" placeholder="HH:mm"
+									type="text" name="hInit" maxlength="255">
+								<p id="displayName"></p>
+							</div>
+							<div class="form-group">
+								<label for="mail">fecha de finalizaciÃ³n*</label> <input
+									class="form-control " id="fFin" placeholder="dd/MM/yyyy"
+									type="text" name="fFin" maxlength="255">
+							</div>
+							<div class="form-group">
+								<label for="user">Hora de finalizaciÃ³n*</label> <input
+									class="form-control " id="hFin" placeholder="HH:mm" type="text"
+									name="hFin" maxlength="255">
+								<p id="displayName"></p>
+							</div>
+							<div class="form-group">
+								<label for="mail">descripcion*</label>
+								<textarea class="form-control " id="description" type="text"
+									name="description" maxlength="255"></textarea>
+							</div>
+							<div class="form-group">
+
+								<label for="user">Elije calendario*</label> <select
+									class="form-control " id="idcal" name="idcal" maxlength="255">
+									<c:forEach var="calendario" items="${calendar}">
+										<option value="${calendario.id}">
+											${calendario.nombre}</option>
+									</c:forEach>
+								</select>
+								<p id="displayName"></p>
+
+							</div>
+							<input type="hidden" id="id" name="ids" value="alta">
+							<div class="form-group">
+								<input class="btn btn-lg btn-success btn-block " id="alta"
+									type="button" value="dar de alta" data-dismiss="modal">
+							</div>
+							<div class="form-group">
+								<p>
+									<c:out value="${error}"></c:out>
+								</p>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer"></div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+
 		</main>
 	</div>
-	
-
-
-
-
-
-
-
 
 	<footer class="app-footer"> <span><a
-		href="http://coreui.io/pro/">Calendar</a> Â© 2018 IT Partner</span> </footer>
-
-
-
-
-
+		href="http://coreui.io/pro/">Calendar</a> Ã‚Â© 2018 IT Partner</span> </footer>
 
 
 	<script src="js/jquery.js"></script>
-	<script> 
-	$(document).ready(function() {
-
-  		// page is now ready, initialize the calendar...
-
-  		$('#calendar').fullCalendar({
-  			events:'http://localhost:8080/com.calendar/recuperarcitas',
-  						
-  				dayClick: function(date, jsEvent, view) {
-
-  					//alert(date);
-  					
-  				   // alert(date.format());
-  				    
-  				    var formateDate = date.format();
-  				    var res = formateDate.split("-");
-  				    var orderDate = res[2]+"/"+res[1]+"/"+res[0];
-  				    
-  				    //alert(orderDate);
-  				    
-  				    $('#pop').click();
-  				  	$('#fInit').val(orderDate);
-					
-  				    /* alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-  				    alert('Current view: ' + view.name); */
-
-  				    // change the day's background color just for fun
-  				   // $(this).css('background-color', 'red');
-
-  				  }	
-  			
-  			
-  		})
-
-	});
-	</script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/pace.min.js"></script>
 	<script src="js/app.js"></script>
@@ -243,6 +187,7 @@
 	<script src="js/moment.min.js"></script>
 	<script src="js/fullcalendar.js"></script>
 	<script src="js/calendario.js"></script>
+	<script src="js/locale-all.js"></script>
 </body>
 </html>
 

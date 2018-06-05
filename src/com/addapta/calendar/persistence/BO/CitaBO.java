@@ -43,7 +43,7 @@ public void delete(Cita c) {
 	
 }
 	
-public void update(Cita c) {
+public int update(Cita c) {
 	
 	Session   session = HibernateUtil.getSessionFactory().openSession();
 	Transaction transaction = session.beginTransaction();
@@ -52,7 +52,7 @@ public void update(Cita c) {
 	transaction.commit();
 	session.close();
 	
-	
+	return c.getId();
 }
 
 public  List <Cita> selection(){

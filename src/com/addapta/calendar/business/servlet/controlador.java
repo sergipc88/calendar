@@ -36,6 +36,7 @@ public class controlador extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		Pagina pag = new Pagina();
 		Rol rol = new Rol();
 		User user = new User();
@@ -50,67 +51,6 @@ public class controlador extends HttpServlet {
 		
 		rBO.alta(rol);
 		
-//		user.setUsuario(nombreUser.trim());
-//		user.setMail(correo.trim());
-//		user.setPass(Security.encrypt(passd.trim()));//introduzco en el usuario la contraseña a la vez que la encripto		
-//		user.getRoles().add(rol);
-//		
-//		
-//		user = uBO.alta(user);
-		
-		
-		
-		//		String pagina = "main.jsp";
-//		
-//		String nombreUser= request.getParameter("user");
-//		String correo = request.getParameter("mail");
-//		String passd = request.getParameter("pass");
-//		String repassd = request.getParameter("repitPass");
-//		
-//		boolean userRep = Security.userExist(nombreUser);//compruebo si existe el user
-//		boolean mailRep = Security.mailExist(correo);//compruebo si exista el mail
-//		boolean passNoCoincidens = Security.passComprovation(passd, repassd);//compruebo si el pass coincide con el 
-//																			//campo "introduce de nuevo la contraseña"
-//		
-//		if(userRep||mailRep||passNoCoincidens) {
-//			
-//			request.setAttribute("error", "hay algun error en los datos introducidos");
-//			pagina = "registro.jsp";
-//			request.getRequestDispatcher(pagina).forward(request, response);
-//			
-//			
-//		}else {
-//			Rol rol = new Rol();
-//			User user = new User();
-//			UserBO uBO = new UserBO();	
-//			
-//			user.setUsuario(nombreUser.trim());
-//			user.setMail(correo.trim());
-//			user.setPass(Security.encrypt(passd.trim()));//introduzco en el usuario la contraseña a la vez que la encripto
-//			user.getRoles().add(rol);
-//			
-//			user = uBO.alta(user);
-//			request.setAttribute("usuario", user);
-//			request.getRequestDispatcher(pagina).forward(request, response);
-//		}
-//		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-							
-//		user.setUsuario("pedro");
-//		user.setPass(Security.encrypt(passd));
-//		user.setMail("pedro@mail.com");
-//		
-//		
-//		uBO.alta(user);
 	}
 
 	/**

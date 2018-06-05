@@ -30,12 +30,12 @@ public class RecuperarCalendario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	String pagina = "calendar.jsp";
+		
+		String pagina = "calendar.jsp";
 		CalendarioBO ca = new CalendarioBO();
 		List<Calendario>calendars = ca.selectCalendars();
 		
-		request.setAttribute("calendar", calendars);
-		
+		request.setAttribute("calendar", calendars);	
 		request.getRequestDispatcher(pagina).forward(request, response);
 		
 	}
